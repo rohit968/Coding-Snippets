@@ -30,3 +30,22 @@ const message = "Hello, World!";
 
 console.log(message.length);
 // Output: 13
+
+// ======================================================
+// ⚠️ Special Case: Emojis & Complex Unicode Characters
+// ======================================================
+
+/**
+ * Some emojis or special symbols use multiple UTF-16 code units,
+ * so `.length` might not match the number of visible characters.
+ */
+
+const emoji = "😀";
+console.log(emoji.length); // Output: 2 (technically two code units)
+
+// ✅ Correct way to count visible characters:
+console.log([...emoji].length); // Output: 1
+
+const complex = "Rohit😀🚀";
+console.log(complex.length); // Output: 9 (code units)
+console.log([...complex].length); // Output: 7 (true visible characters)
